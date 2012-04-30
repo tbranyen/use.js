@@ -64,7 +64,7 @@ define({
     var normalize = { attach: null, deps: "" };
 
     // Normalize the attach to window[name] or function() { }
-    if (typeof attach === "function") {
+    if (typeof module.attach === "function" || typeof module.attach === "string") {
       normalize.attach = "return " + module.attach.toString() + ";";
     } else {
       normalize.attach = "return typeof " + module.attach +
