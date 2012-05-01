@@ -4,6 +4,9 @@
  */
 (function() {
 
+// Use root instead `window` to work with node.js
+var root = this;
+
 // Cache used to map configuration options between load and write.
 var buildMap = {};
 
@@ -46,11 +49,11 @@ define({
 
         // Return the correct attached object
         if (typeof attach === "function") {
-          return load(attach.apply(window, depArgs));
+          return load(attach.apply(root, depArgs));
         }
 
         // Use window for now (maybe this?)
-        return load(window[attach]);
+        return load(root[attach]);
       });
     });
   },
